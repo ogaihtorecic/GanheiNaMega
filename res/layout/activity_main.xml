@@ -8,9 +8,567 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <TextView
+   <TableLayout
+        android:id="@+id/tableLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ToggleButton
+                android:id="@+id/toggleButton1"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="1"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton2"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="2"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton3"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="3"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton4"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="4"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton5"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="5"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton6"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="6"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton7"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="7"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton8"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="8"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton9"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="9"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton10"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="10"
+                android:textOn="X" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ToggleButton
+                android:id="@+id/toggleButton11"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="11"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton12"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="12"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton13"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="13"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton14"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="14"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton15"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="15"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton16"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="16"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton17"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="17"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton18"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="18"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton19"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="19"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton20"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="20"
+                android:textOn="X" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ToggleButton
+                android:id="@+id/toggleButton21"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="21"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton22"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="22"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton23"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="23"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton24"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="24"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton25"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="25"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton26"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="26"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton27"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="27"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton28"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="28"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton29"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="29"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton30"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="30"
+                android:textOn="X" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ToggleButton
+                android:id="@+id/toggleButton31"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="31"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton32"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="32"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton33"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="33"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton34"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="34"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton35"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="35"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton36"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="36"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton37"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="37"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton38"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="38"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton39"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="39"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton40"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="40"
+                android:textOn="X" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ToggleButton
+                android:id="@+id/toggleButton41"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="41"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton42"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="42"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton43"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="43"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton44"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="44"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton45"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="45"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton46"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="46"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton47"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="47"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton48"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="48"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton49"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="49"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton50"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="50"
+                android:textOn="X" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ToggleButton
+                android:id="@+id/toggleButton51"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="51"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton52"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="52"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton53"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="53"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton54"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="54"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton55"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="55"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton56"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="56"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton57"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="57"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton58"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="58"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton59"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="59"
+                android:textOn="X" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton60"
+                style="@style/MyButtonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="60"
+                android:textOn="X" />
+        </TableRow>
+    </TableLayout>
+
+   <EditText
+       android:id="@+id/etNumConcurso"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentTop="true"
+       android:layout_centerHorizontal="true"
+       android:ems="10" 
+       android:hint="@string/num_concurso"/>
+
+   <Button
+       android:id="@+id/btGravarAposta"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignLeft="@+id/tableLayout1"
+       android:layout_below="@+id/tableLayout1"
+       android:layout_marginTop="36dp"
+       android:text="@string/gravar_aposta" />
+
+   <Button
+       android:id="@+id/btBuscarApostas"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignBaseline="@+id/btGravarAposta"
+       android:layout_alignBottom="@+id/btGravarAposta"
+       android:layout_alignRight="@+id/tableLayout1"
+       android:text="@string/buscar_apostas" />
+
+   <Button
+       android:id="@+id/btCancelarAposta"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignBaseline="@+id/btBuscarApostas"
+       android:layout_alignBottom="@+id/btBuscarApostas"
+       android:layout_centerHorizontal="true"
+       android:text="@string/cancelar_aposta" />
 
 </RelativeLayout>

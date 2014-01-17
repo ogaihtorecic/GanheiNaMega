@@ -3,6 +3,10 @@
 
     <string name="app_name">Ganhei na Mega</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-
+    <string name="num_concurso">nº concurso</string>
+    <string name="gravar_aposta">Gravar</string>
+    <string name="cancelar_aposta">Cancelar</string>
+    <string name="buscar_apostas">Apostas</string>
+    <string name="aposta_registrada">Aposta registrada para o concurso</string>
+    
 </resources>
