@@ -72,12 +72,49 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	}
 
+	private boolean apostaValida() {
+		int numeroDezenas = 0;
+		boolean apostaValida = true;
+
+		for (int i = 0; i < ids.length && apostaValida; i++) {
+
+			if (tbArray[i].isChecked()) {
+				numeroDezenas++;
+			}
+
+			if (numeroDezenas > 15) {
+				apostaValida = false;
+			}
+		}
+
+		if (numeroDezenas < 6) {
+			apostaValida = false;
+		}
+
+		return apostaValida;
+	}
+
 	private void gravarAposta() {
+
+		if (apostaValida()) {
+			// gravar aposta;
+			Toast.makeText(
+					this,
+					getResources().getString(R.string.aposta_registrada) + " "
+							+ etNumConcurso.getText().toString(),
+					Toast.LENGTH_LONG).show();
+		} else {
+			Toast.makeText(this,
+					getResources().getString(R.string.aposta_invalida),
+					Toast.LENGTH_LONG).show();
+		}
 
 	}
 
 	private void cancelarAposta() {
-
+		for (int i = 0; i < ids.length; i++) {
+			tbArray[i].setChecked(false);
+		}
 	}
 
 	private void buscarApostas() {

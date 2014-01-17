@@ -8,5 +8,6 @@
     <string name="cancelar_aposta">Cancelar</string>
     <string name="buscar_apostas">Apostas</string>
     <string name="aposta_registrada">Aposta registrada para o concurso</string>
+    <string name="aposta_invalida">Aposta invalida</string>
     
 </resources>
