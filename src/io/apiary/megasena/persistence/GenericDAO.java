@@ -14,4 +14,10 @@ public interface GenericDAO<E> {
 	
 	public List<E> list();
 	
+	public void beginTransaction();
+	
+	public void endTransaction();
+	
+	public void endTransactionSuccessfully();
+	
 }
