@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">Ganhei na Mega</string>
@@ -8,9 +8,14 @@
     <string name="cancelar_aposta">Cancelar</string>
     <string name="buscar_apostas">Apostas</string>
     <string name="aposta_registrada">Aposta registrada para o concurso</string>
+    <string name="aposta_invalida_num_concurso">Informe o nº do concurso</string>
+    <string name="aposta_invalida_qtd_dezenas">Selecione de 6 a 15 dezenas</string>
+    <string name="title_activity_historico_apostas">HistoricoApostasActivity</string>
+    <string name="concurso">Concurso</string>
+    <string name="dezenas">Dezenas</string>
     <string name="aposta_invalida">Aposta invalida</string>
     
     <string name="falha_conexao">Falha na Conexão</string>
     <string name="falha_servico">Falha na Serviço</string>
-    
+
 </resources>
