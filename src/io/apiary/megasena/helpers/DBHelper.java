@@ -38,31 +38,70 @@ public class DBHelper extends SQLiteOpenHelper {
 		builder.append(CREATE_TABLE);
 		builder.append(Aposta.TABLE_NAME);
 		builder.append(OPEN_PARENTH);
-		builder.append(Aposta.COLUMN_ID + AUTO_INCREMENT);
-		builder.append(Aposta.CONCURSO + INTEGER_NOTNULL);
-		builder.append(Aposta.DEZENA_1 + INTEGER_NOTNULL);
-		builder.append(Aposta.DEZENA_2 + INTEGER_NOTNULL);
-		builder.append(Aposta.DEZENA_3 + INTEGER_NOTNULL);
-		builder.append(Aposta.DEZENA_4 + INTEGER_NOTNULL);
-		builder.append(Aposta.DEZENA_5 + INTEGER_NOTNULL);
-		builder.append(Aposta.DEZENA_6 + INTEGER_NOTNULL);
-		builder.append(Aposta.DEZENA_7 + INTEGER);
-		builder.append(Aposta.DEZENA_8 + INTEGER);
-		builder.append(Aposta.DEZENA_9 + INTEGER);
-		builder.append(Aposta.DEZENA_10 + INTEGER);
-		builder.append(Aposta.DEZENA_11 + INTEGER);
-		builder.append(Aposta.DEZENA_12 + INTEGER);
-		builder.append(Aposta.DEZENA_13 + INTEGER);
-		builder.append(Aposta.DEZENA_14 + INTEGER);
-		builder.append(Aposta.DEZENA_15 + INTEGER);
-		builder.append(Aposta.ACERTOS + INTEGER_END);
+
+		builder.append(Aposta.COLUMN_ID);
+		builder.append(AUTO_INCREMENT);
+
+		builder.append(Aposta.CONCURSO);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Aposta.DEZENA_1);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Aposta.DEZENA_2);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Aposta.DEZENA_3);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Aposta.DEZENA_4);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Aposta.DEZENA_5);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Aposta.DEZENA_6);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Aposta.DEZENA_7);
+		builder.append(INTEGER);
+
+		builder.append(Aposta.DEZENA_8);
+		builder.append(INTEGER);
+		
+		builder.append(Aposta.DEZENA_9);
+		builder.append(INTEGER);
+		
+		builder.append(Aposta.DEZENA_10);
+		builder.append(INTEGER);
+		
+		builder.append(Aposta.DEZENA_11);
+		builder.append(INTEGER);
+		
+		builder.append(Aposta.DEZENA_12);
+		builder.append(INTEGER);
+		
+		builder.append(Aposta.DEZENA_13);
+		builder.append(INTEGER);
+		
+		builder.append(Aposta.DEZENA_14);
+		builder.append(INTEGER);
+		
+		builder.append(Aposta.DEZENA_15);
+		builder.append(INTEGER);
+		
+		builder.append(Aposta.ACERTOS);
+		builder.append(INTEGER_END);
 
 		database.execSQL(builder.toString());
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int arg1, int arg2) {
-		database.execSQL(DROP_TABLE + Aposta.TABLE_NAME);
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(DROP_TABLE);
+		stringBuilder.append(Aposta.TABLE_NAME);
+		database.execSQL(stringBuilder.toString());
 	}
 
 }
