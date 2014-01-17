@@ -1,22 +1,14 @@
 package io.apiary.megasena.persistence;
 
-import io.apiary.megasena.helpers.DBHelper;
 import io.apiary.megasena.model.Aposta;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
-public class ApostaDAO implements GenericDAO<Aposta> {
+public class ApostaDAO extends BasicDAO<Aposta> {
 
-	private transient SQLiteDatabase database;
-	
-	public ApostaDAO() {
-		database = DBHelper.getInstance().getWritableDatabase();
-	}
-	
 	@Override
 	public void insert(Aposta aposta) {
 		database.insertOrThrow(Aposta.TABLE_NAME, null, aposta.getContentValues());
@@ -42,7 +34,7 @@ public class ApostaDAO implements GenericDAO<Aposta> {
 
 	@Override
 	public List<Aposta> list() {
-		Cursor cursor = database.query(Aposta.TABLE_NAME, null, null, null, null, null, null);
+		Cursor cursor = database.query(Aposta.TABLE_NAME, null, null, null, null, null, Aposta.COLUMN_ID + " DESC");
 		List<Aposta> apostas = new ArrayList<Aposta>();
 		while(cursor.moveToNext()) {
 			Aposta aposta = new Aposta();
@@ -60,23 +52,4 @@ public class ApostaDAO implements GenericDAO<Aposta> {
 		}
 		return apostas;
 	}
-
-	@Override
-	public void beginTransaction() {
-		database.beginTransaction();
-		
-	}
-
-	@Override
-	public void endTransaction() {
-		database.endTransaction();
-		
-	}
-
-	@Override
-	public void endTransactionSuccessfully() {
-		database.setTransactionSuccessful();
-		database.endTransaction();
-	}
-
 }

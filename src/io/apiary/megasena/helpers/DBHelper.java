@@ -1,6 +1,7 @@
 package io.apiary.megasena.helpers;
 
 import io.apiary.megasena.model.Aposta;
+import io.apiary.megasena.model.Resultado;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -10,7 +11,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String CREATE_TABLE = "CREATE TABLE ";
 	private static final String OPEN_PARENTH = "(";
 	private static final String AUTO_INCREMENT = " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ";
-	private static final String INTEGER_END = " INTEGER)";
+	private static final String INTEGER_END = " INTEGER);";
+	private static final String INTEGER_NOTNULL_END = " INTEGER NOT NULL);";
 	private static final String INTEGER = " INTEGER,";
 	private static final String INTEGER_NOTNULL = " INTEGER NOT NULL,";
 	private static final String DROP_TABLE = "DROP TABLE IF EXISTS ";
@@ -34,7 +36,49 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
+		database.execSQL(createTableAposta());
+		database.execSQL(createTableResultado());
+	}
+
+	private String createTableResultado() {
+		
 		StringBuilder builder = new StringBuilder();
+		
+		builder.append(CREATE_TABLE);
+		builder.append(Resultado.TABLE_NAME);
+		builder.append(OPEN_PARENTH);
+
+		builder.append(Resultado.COLUMN_ID);
+		builder.append(AUTO_INCREMENT);
+
+		builder.append(Resultado.CONCURSO);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Resultado.DEZENA_1);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Resultado.DEZENA_2);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Resultado.DEZENA_3);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Resultado.DEZENA_4);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Resultado.DEZENA_5);
+		builder.append(INTEGER_NOTNULL);
+
+		builder.append(Resultado.DEZENA_6);
+		builder.append(INTEGER_NOTNULL_END);
+		
+		return builder.toString();
+	}
+
+	private String createTableAposta() {
+		
+		StringBuilder builder = new StringBuilder();
+		
 		builder.append(CREATE_TABLE);
 		builder.append(Aposta.TABLE_NAME);
 		builder.append(OPEN_PARENTH);
@@ -93,7 +137,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		builder.append(Aposta.ACERTOS);
 		builder.append(INTEGER_END);
 
-		database.execSQL(builder.toString());
+		return builder.toString();
 	}
 
 	@Override
