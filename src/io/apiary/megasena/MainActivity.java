@@ -4,14 +4,19 @@ import io.apiary.megasena.helpers.DBHelper;
 import io.apiary.megasena.model.Aposta;
 import io.apiary.megasena.persistence.ApostaDAO;
 import io.apiary.megasena.persistence.GenericDAO;
+import io.apiary.megasena.receivers.LocalReceiver;
+import io.apiary.megasena.receivers.LocalReceiverImpl;
+import io.apiary.megasena.services.ResultService;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,19 +28,19 @@ import android.widget.ToggleButton;
 public class MainActivity extends Activity implements OnClickListener {
 
 	private EditText etNumConcurso;
-	private ToggleButton tb1, tb2, tb3, tb4, tb5, tb6, tb7, tb8, tb9, tb10, tb11, tb12,
-			tb13, tb14, tb15, tb16, tb17, tb18, tb19, tb20, tb21, tb22, tb23,
-			tb24, tb25, tb26, tb27, tb28, tb29, tb30, tb31, tb32, tb33, tb34,
-			tb35, tb36, tb37, tb38, tb39, tb40, tb41, tb42, tb43, tb44, tb45,
-			tb46, tb47, tb48, tb49, tb50, tb51, tb52, tb53, tb54, tb55, tb56,
-			tb57, tb58, tb59, tb60;
+	private ToggleButton tb1, tb2, tb3, tb4, tb5, tb6, tb7, tb8, tb9, tb10,
+			tb11, tb12, tb13, tb14, tb15, tb16, tb17, tb18, tb19, tb20, tb21,
+			tb22, tb23, tb24, tb25, tb26, tb27, tb28, tb29, tb30, tb31, tb32,
+			tb33, tb34, tb35, tb36, tb37, tb38, tb39, tb40, tb41, tb42, tb43,
+			tb44, tb45, tb46, tb47, tb48, tb49, tb50, tb51, tb52, tb53, tb54,
+			tb55, tb56, tb57, tb58, tb59, tb60;
 
-	private ToggleButton[] tbArray = new ToggleButton[] { tb1, tb2, tb3, tb4, tb5, tb6,
-			tb7, tb8, tb9, tb10, tb11, tb12, tb13, tb14, tb15, tb16, tb17,
-			tb18, tb19, tb20, tb21, tb22, tb23, tb24, tb25, tb26, tb27, tb28,
-			tb29, tb30, tb31, tb32, tb33, tb34, tb35, tb36, tb37, tb38, tb39,
-			tb40, tb41, tb42, tb43, tb44, tb45, tb46, tb47, tb48, tb49, tb50,
-			tb51, tb52, tb53, tb54, tb55, tb56, tb57, tb58, tb59, tb60 };
+	private ToggleButton[] tbArray = new ToggleButton[] { tb1, tb2, tb3, tb4,
+			tb5, tb6, tb7, tb8, tb9, tb10, tb11, tb12, tb13, tb14, tb15, tb16,
+			tb17, tb18, tb19, tb20, tb21, tb22, tb23, tb24, tb25, tb26, tb27,
+			tb28, tb29, tb30, tb31, tb32, tb33, tb34, tb35, tb36, tb37, tb38,
+			tb39, tb40, tb41, tb42, tb43, tb44, tb45, tb46, tb47, tb48, tb49,
+			tb50, tb51, tb52, tb53, tb54, tb55, tb56, tb57, tb58, tb59, tb60 };
 
 	private int[] ids = new int[] { R.id.toggleButton1, R.id.toggleButton2,
 			R.id.toggleButton3, R.id.toggleButton4, R.id.toggleButton5,
@@ -59,10 +64,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			R.id.toggleButton57, R.id.toggleButton58, R.id.toggleButton59,
 			R.id.toggleButton60 };
 
-	private Button btGravarAposta, btCancelarAposta, btBuscarApostas;
+	private Button btGravarAposta, btCancelarAposta, btBuscarApostas,
+			btVerificar;
 
 	private GenericDAO<Aposta> apostaDAO;
-	
+
+	private LocalReceiver localReceiver = new LocalReceiverImpl();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,9 +78,23 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		bindViewComponents();
 		registerViewListeners();
-		
+
 		DBHelper.initializeDB(getApplicationContext());
 		apostaDAO = new ApostaDAO();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		LocalBroadcastManager.getInstance(getApplicationContext())
+				.registerReceiver(localReceiver, localReceiver.getFilters());
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		LocalBroadcastManager.getInstance(getApplicationContext())
+				.unregisterReceiver(localReceiver);
 	}
 
 	private void bindViewComponents() {
@@ -81,26 +103,32 @@ public class MainActivity extends Activity implements OnClickListener {
 		btGravarAposta = (Button) this.findViewById(R.id.btGravarAposta);
 		btCancelarAposta = (Button) this.findViewById(R.id.btCancelarAposta);
 		btBuscarApostas = (Button) this.findViewById(R.id.btBuscarApostas);
+		btVerificar = (Button) this.findViewById(R.id.btVerificar);
 
 		for (int i = 0; i < ids.length; i++) {
 			tbArray[i] = (ToggleButton) this.findViewById(ids[i]);
 		}
 	}
-	
+
 	private void registerViewListeners() {
-		
+
 		btGravarAposta.setOnClickListener(this);
 		btCancelarAposta.setOnClickListener(this);
 		btBuscarApostas.setOnClickListener(this);
+		btVerificar.setOnClickListener(this);
 	}
 
 	private boolean apostaValida() {
 		int numeroDezenas = 0;
-				
-        if("".equals(etNumConcurso.getText().toString())) {
-        	Toast.makeText(this, getResources().getString(R.string.aposta_invalida_num_concurso),Toast.LENGTH_LONG).show();
-        	return false;
-        }
+
+		if ("".equals(etNumConcurso.getText().toString())) {
+			Toast.makeText(
+					this,
+					getResources().getString(
+							R.string.aposta_invalida_num_concurso),
+					Toast.LENGTH_LONG).show();
+			return false;
+		}
 
 		for (int i = 0; i < ids.length && numeroDezenas <= 15; i++) {
 
@@ -110,23 +138,28 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 		if (numeroDezenas < 6 || numeroDezenas > 15) {
-			Toast.makeText(this, getResources().getString(R.string.aposta_invalida_qtd_dezenas),Toast.LENGTH_LONG).show();
+			Toast.makeText(
+					this,
+					getResources().getString(
+							R.string.aposta_invalida_qtd_dezenas),
+					Toast.LENGTH_LONG).show();
 			return false;
 		}
 
 		return true;
 	}
-	
+
 	private Aposta getAposta() {
 
 		Aposta aposta = new Aposta();
-		aposta.setConcurso(Integer.valueOf(etNumConcurso.getText().toString().trim()));
-		
+		aposta.setConcurso(Integer.valueOf(etNumConcurso.getText().toString()
+				.trim()));
+
 		Set<Integer> setDezenas = aposta.getDezenas();
 
 		for (int i = 0; i < tbArray.length && setDezenas.size() < 15; i++) {
 			if (tbArray[i].isChecked()) {
-				setDezenas.add(i+1);
+				setDezenas.add(i + 1);
 			}
 		}
 
@@ -136,30 +169,58 @@ public class MainActivity extends Activity implements OnClickListener {
 	private void gravarAposta() {
 
 		if (apostaValida()) {
-			
-			ApostaDAO apostaDAO = new ApostaDAO();
-			apostaDAO.insert(getAposta());
-			
-			Toast.makeText(this, getResources().getString(R.string.aposta_registrada) + " "+ etNumConcurso.getText().toString(), Toast.LENGTH_LONG).show();			
-			limparCartaoAposta();			
+
+			new AsyncTask<Void, Void, Void>() {
+
+				@Override
+				protected Void doInBackground(Void... params) {
+					apostaDAO.insert(getAposta());
+					return null;
+				}
+
+				protected void onPostExecute(Void result) {
+					Toast.makeText(
+							MainActivity.this,
+							MainActivity.this
+									.getText(R.string.aposta_registrada)
+									+ " "
+									+ etNumConcurso.getText().toString(),
+							Toast.LENGTH_LONG).show();
+					limparCartaoAposta();
+				};
+
+			}.execute();
+
 		}
 
 	}
 
 	private void limparCartaoAposta() {
-		
+
 		etNumConcurso.setText("");
-		
+
 		for (int i = 0; i < ids.length; i++) {
 			tbArray[i].setChecked(false);
 		}
 	}
 
 	private void buscarApostas() {
-		
-		android.content.Intent intent = new Intent(this, HistoricoApostasActivity.class);
-		//intent.putExtra("LIST_EMPLOYEE", (ArrayList<Aposta>)apostaDAO.list());
-		startActivity(intent);
+
+		new AsyncTask<Void, Void, List<Aposta>>() {
+
+			@Override
+			protected List<Aposta> doInBackground(Void... params) {
+				return apostaDAO.list();
+			}
+			
+			@Override
+			protected void onPostExecute(List<Aposta> result) {
+				super.onPostExecute(result);
+				Intent intent = new Intent(MainActivity.this, HistoricoApostasActivity.class);
+				intent.putExtra(Aposta.INTENT_KEY, (ArrayList<Aposta>)result);
+				startActivity(intent);
+			}
+		}.execute();
 
 	}
 
@@ -178,6 +239,11 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		case R.id.btBuscarApostas:
 			buscarApostas();
+			break;
+
+		case R.id.btVerificar:
+			startService(new Intent(getApplicationContext(),
+					ResultService.class));
 			break;
 
 		default:

@@ -3,11 +3,8 @@ package io.apiary.megasena.services;
 import io.apiary.megasena.model.Resultado;
 import io.apiary.megasena.parsers.JSONParser;
 import io.apiary.megasena.parsers.Parser;
-import io.apiary.megasena.persistence.GenericDAO;
-import io.apiary.megasena.persistence.ResultadoDAO;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -29,35 +26,32 @@ public class ResultService extends IntentService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		try {
-			String jsonBody = "";
+			String jsonBody = "{'concurso': 1565, 'dezena1': 12, 'dezena2': 22, 'dezena3': 35, 'dezena4': 41, 'dezena5': 48, 'dezena6': 56}";
 			Parser<Resultado> parser = new JSONParser(jsonBody);
 			Resultado resultado = parser.convert();
-			GenericDAO<Resultado> dao = new ResultadoDAO();
 			
-			dao.beginTransaction();
-			List<Resultado> resultados = dao.list();
-			if(!resultados.contains(resultado)) {
-				dao.insert(resultado);
-			}
-			dao.endTransactionSuccessfully();
-			
-			sendLocalBroadcast(ServiceActions.SUCCESS);
+			sendLocalBroadcast(ServiceActions.SUCCESS, resultado);
 			
 		} catch (ClientProtocolException e) {
-			sendLocalBroadcast(ServiceActions.CONNECTION_FAIL);
+			sendLocalBroadcast(ServiceActions.CONNECTION_FAIL, null);
 		} catch (IOException e) {
-			sendLocalBroadcast(ServiceActions.CONNECTION_FAIL);
+			sendLocalBroadcast(ServiceActions.CONNECTION_FAIL, null);
 		} catch (JSONException e) {
-			sendLocalBroadcast(ServiceActions.SERVICE_FAIL);
+			sendLocalBroadcast(ServiceActions.SERVICE_FAIL, null);
 		} catch (Exception e) {
-			sendLocalBroadcast(ServiceActions.SERVICE_FAIL);
+			sendLocalBroadcast(ServiceActions.SERVICE_FAIL, null);
 		}
 
 	}
 	
-	private void sendLocalBroadcast(ServiceActions action) {
+	private void sendLocalBroadcast(ServiceActions action, Resultado resultado) {
 		final Intent intent = new Intent();
 		intent.setAction(action.getAction());
+		
+		if(resultado != null) {
+			intent.putExtra(Resultado.INTENT_KEY, resultado);
+		}
+		
 		LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
 	} 
 

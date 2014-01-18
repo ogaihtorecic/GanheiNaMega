@@ -1,8 +1,6 @@
 package io.apiary.megasena;
 
 import io.apiary.megasena.model.Aposta;
-import io.apiary.megasena.persistence.ApostaDAO;
-import io.apiary.megasena.persistence.GenericDAO;
 
 import java.util.ArrayList;
 
@@ -22,9 +20,7 @@ public class HistoricoApostasActivity extends Activity {
 		TextView tvNumConcurso = (TextView) this.findViewById(R.id.lb_num_concurso);
 		TextView tvDezenas = (TextView) this.findViewById(R.id.lb_dezenas);
 
-		GenericDAO<Aposta> apostaDAO = new ApostaDAO();
-
-		ArrayList<Aposta> arrayListAposta = (ArrayList<Aposta>) apostaDAO.list(); 
+		ArrayList<Aposta> arrayListAposta = (ArrayList<Aposta>) getIntent().getExtras().get(Aposta.INTENT_KEY); 
 				
 		/*
 		for (Employee employee : arrayListEmployee) {
@@ -39,13 +35,6 @@ public class HistoricoApostasActivity extends Activity {
 		
 		listView.setAdapter(apostaAdapter);
 		
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.apostas_list, menu);
-		return true;
 	}
 
 }

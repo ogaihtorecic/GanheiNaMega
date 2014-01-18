@@ -30,6 +30,11 @@
         </activity>
 
         <service android:name="io.apiary.megasena.services.ResultService" />
+
+        <activity
+            android:name="io.apiary.megasena.ResultActivity"
+            android:label="@string/title_activity_result" >
+        </activity>
     </application>
 
 </manifest>

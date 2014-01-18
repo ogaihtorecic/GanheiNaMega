@@ -2,7 +2,6 @@ package io.apiary.megasena;
 
 import io.apiary.megasena.model.Aposta;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 

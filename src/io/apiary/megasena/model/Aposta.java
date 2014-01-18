@@ -32,6 +32,8 @@ public class Aposta implements Serializable {
 
 	public static final String DEZENA_ = "tx_dezena_";
 	
+	public static final String INTENT_KEY = "apostas";
+	
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;

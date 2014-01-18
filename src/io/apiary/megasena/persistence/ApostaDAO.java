@@ -44,7 +44,7 @@ public class ApostaDAO extends BasicDAO<Aposta> {
 			
 			for (int i = 1; i < 16; i++) {
 				Integer dezena = cursor.getInt(cursor.getColumnIndex(Aposta.DEZENA_ + i));
-				if(dezena != null) {
+				if(dezena != null && dezena != 0) {
 					aposta.getDezenas().add(dezena);
 				}
 			}

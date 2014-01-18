@@ -1,21 +1,13 @@
 package io.apiary.megasena.model;
 
-import android.content.ContentValues;
-import android.provider.BaseColumns;
+import java.io.Serializable;
 
-public class Resultado {
+public class Resultado implements Serializable {
 
-	public static final String TABLE_NAME = "tb_resultado";
-	public static final String COLUMN_ID = BaseColumns._ID;
-	public static final String CONCURSO = "tx_concurso";
-	public static final String DEZENA_1 = "tx_dezena_1";
-	public static final String DEZENA_2 = "tx_dezena_2";
-	public static final String DEZENA_3 = "tx_dezena_3";
-	public static final String DEZENA_4 = "tx_dezena_4";
-	public static final String DEZENA_5 = "tx_dezena_5";
-	public static final String DEZENA_6 = "tx_dezena_6";
+	private static final long serialVersionUID = 1L;
+
+	public static final String INTENT_KEY = "resultado";
 	
-	private Integer id;
 	private Integer concurso;
 	private Integer dezena1;
 	private Integer dezena2;
@@ -23,14 +15,6 @@ public class Resultado {
 	private Integer dezena4;
 	private Integer dezena5;
 	private Integer dezena6;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Integer getConcurso() {
 		return concurso;
@@ -86,29 +70,6 @@ public class Resultado {
 
 	public void setDezena6(Integer dezena6) {
 		this.dezena6 = dezena6;
-	}
-	
-	public ContentValues getContentValues() {
-		ContentValues contentValues = new ContentValues();
-		contentValues.put(CONCURSO, this.concurso);
-		contentValues.put(DEZENA_1, this.dezena1);
-		contentValues.put(DEZENA_2, this.dezena2);
-		contentValues.put(DEZENA_3, this.dezena3);
-		contentValues.put(DEZENA_4, this.dezena4);
-		contentValues.put(DEZENA_5, this.dezena5);
-		contentValues.put(DEZENA_6, this.dezena6);
-		
-		return contentValues;
-	}
-	
-	@Override
-	public boolean equals(Object o) {
-		if(o == null || !(o instanceof Resultado)) {
-			return super.equals(o);
-		}
-		
-		Resultado resultado = (Resultado) o;
-		return this.getConcurso().equals(resultado);
 	}
 
 }
