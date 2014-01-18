@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class HistoricoApostasActivity extends Activity {
 	
@@ -17,6 +18,9 @@ public class HistoricoApostasActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_historico_apostas);
+		
+		TextView tvNumConcurso = (TextView) this.findViewById(R.id.lb_num_concurso);
+		TextView tvDezenas = (TextView) this.findViewById(R.id.lb_dezenas);
 
 		GenericDAO<Aposta> apostaDAO = new ApostaDAO();
 
