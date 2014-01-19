@@ -4,6 +4,6 @@ import org.apache.http.HttpResponse;
 
 public interface WebService {
 
-	public HttpResponse get(String url);
+	public HttpResponse get(String url) throws Exception;
 	
 }

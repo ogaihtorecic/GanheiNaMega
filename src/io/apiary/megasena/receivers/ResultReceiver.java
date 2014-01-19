@@ -30,14 +30,12 @@ public class ResultReceiver extends BroadcastReceiver {
 
 		} else if (action.equals(ServiceActions.CONNECTION_FAIL.getAction())) {
 
-			issueNotification(context,
-					(Resultado) intent.getExtras().get(Resultado.INTENT_KEY),
+			issueNotificationOnError(context,
 					(String) context.getText(R.string.falha_conexao));
 
 		} else if (action.equals(ServiceActions.SERVICE_FAIL.getAction())) {
 
-			issueNotification(context,
-					(Resultado) intent.getExtras().get(Resultado.INTENT_KEY),
+			issueNotificationOnError(context,
 					(String) context.getText(R.string.falha_servico));
 		}
 	}
@@ -51,6 +49,21 @@ public class ResultReceiver extends BroadcastReceiver {
 				(ArrayList<Aposta>) ApostaHelper.extractWinners(resultado,
 						new ApostaDAO().list()));
 
+		notify(context, resultIntent, notificationText);
+
+	}
+
+	private void issueNotificationOnError(Context context,
+			String notificationText) {
+
+		Intent resultIntent = new Intent(context, ResultActivity.class);
+
+		notify(context, resultIntent, notificationText);
+
+	}
+
+	private void notify(Context context, Intent resultIntent,
+			String notificationText) {
 		PendingIntent resultPendingIntent = PendingIntent.getActivity(context,
 				0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -65,7 +78,6 @@ public class ResultReceiver extends BroadcastReceiver {
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 
 		mNotifyMgr.notify(mNotificationId, mBuilder.build());
-
 	}
 
 }
