@@ -11,7 +11,6 @@ import org.json.JSONException;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.v4.content.LocalBroadcastManager;
 
 public class ResultService extends IntentService {
 
@@ -30,21 +29,21 @@ public class ResultService extends IntentService {
 			Parser<Resultado> parser = new JSONParser(jsonBody);
 			Resultado resultado = parser.convert();
 			
-			sendLocalBroadcast(ServiceActions.SUCCESS, resultado);
+			sendBroadcast(ServiceActions.SUCCESS, resultado);
 			
 		} catch (ClientProtocolException e) {
-			sendLocalBroadcast(ServiceActions.CONNECTION_FAIL, null);
+			sendBroadcast(ServiceActions.CONNECTION_FAIL, null);
 		} catch (IOException e) {
-			sendLocalBroadcast(ServiceActions.CONNECTION_FAIL, null);
+			sendBroadcast(ServiceActions.CONNECTION_FAIL, null);
 		} catch (JSONException e) {
-			sendLocalBroadcast(ServiceActions.SERVICE_FAIL, null);
+			sendBroadcast(ServiceActions.SERVICE_FAIL, null);
 		} catch (Exception e) {
-			sendLocalBroadcast(ServiceActions.SERVICE_FAIL, null);
+			sendBroadcast(ServiceActions.SERVICE_FAIL, null);
 		}
 
 	}
 	
-	private void sendLocalBroadcast(ServiceActions action, Resultado resultado) {
+	private void sendBroadcast(ServiceActions action, Resultado resultado) {
 		final Intent intent = new Intent();
 		intent.setAction(action.getAction());
 		
@@ -52,7 +51,7 @@ public class ResultService extends IntentService {
 			intent.putExtra(Resultado.INTENT_KEY, resultado);
 		}
 		
-		LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+		sendBroadcast(intent);
 	} 
 
 }

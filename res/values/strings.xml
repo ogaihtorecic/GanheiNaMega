@@ -3,7 +3,7 @@
 
     <string name="app_name">Ganhei na Mega</string>
     <string name="action_settings">Settings</string>
-    <string name="num_concurso">nº concurso</string>
+    <string name="num_concurso">Concurso</string>
     <string name="gravar_aposta">Gravar</string>
     <string name="limpar_aposta">Limpar</string>
     <string name="buscar_apostas">Apostas</string>
@@ -21,6 +21,6 @@
     <string name="notification_title">GanheiNaMega tem uma mensagem para você</string>
     <string name="notification_text">Você acaba de acertar alguns números da Mega Sena, clique aqui e saiba mais</string>
     <string name="title_activity_result">Resultado</string>
-    <string name="verify">Verificar se Ganhei</string>
+    <string name="verify">Disparar Alarme</string>
 
 </resources>

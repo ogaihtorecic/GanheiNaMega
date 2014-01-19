@@ -28,13 +28,28 @@
             android:name="io.apiary.megasena.HistoricoApostasActivity"
             android:label="@string/title_activity_historico_apostas" >
         </activity>
-
-        <service android:name="io.apiary.megasena.services.ResultService" />
-
         <activity
             android:name="io.apiary.megasena.ResultActivity"
             android:label="@string/title_activity_result" >
         </activity>
+
+        <service android:name="io.apiary.megasena.services.ResultService" />
+
+        <receiver android:name="io.apiary.megasena.receivers.ResultReceiver" >
+            <intent-filter>
+                <action android:name="io.apiary.megasena.action.SUCCESS" />
+                <action android:name="io.apiary.megasena.action.CONNECTION_FAIL" />
+                <action android:name="io.apiary.megasena.action.SERVICE_FAIL_ACTION" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="io.apiary.megasena.receivers.AlarmReceiver" >
+            <intent-filter>
+                <action android:name="io.apiary.megasena.action.WAKEUP" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

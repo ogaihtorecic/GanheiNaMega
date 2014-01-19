@@ -6,13 +6,13 @@ import io.apiary.megasena.model.Resultado;
 import io.apiary.megasena.services.ServiceActions;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
-public class LocalReceiverImpl extends LocalReceiver {
+public class ResultReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -45,16 +45,6 @@ public class LocalReceiverImpl extends LocalReceiver {
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotifyMgr.notify(mNotificationId, mBuilder.build());
 
-	}
-
-	@Override
-	public IntentFilter getFilters() {
-		IntentFilter intentFilter = new IntentFilter();
-		intentFilter.addAction(ServiceActions.SUCCESS.getAction());
-		intentFilter.addAction(ServiceActions.CONNECTION_FAIL.getAction());
-		intentFilter.addAction(ServiceActions.SERVICE_FAIL.getAction());
-
-		return intentFilter;
 	}
 
 }

@@ -1,12 +1,11 @@
 package io.apiary.megasena;
 
+import io.apiary.megasena.helpers.AlarmHelper;
 import io.apiary.megasena.helpers.DBHelper;
 import io.apiary.megasena.model.Aposta;
 import io.apiary.megasena.persistence.ApostaDAO;
 import io.apiary.megasena.persistence.GenericDAO;
-import io.apiary.megasena.receivers.LocalReceiver;
-import io.apiary.megasena.receivers.LocalReceiverImpl;
-import io.apiary.megasena.services.ResultService;
+import io.apiary.megasena.receivers.AlarmReceiver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +15,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -69,8 +66,6 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private GenericDAO<Aposta> apostaDAO;
 
-	private LocalReceiver localReceiver = new LocalReceiverImpl();
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -81,20 +76,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		DBHelper.initializeDB(getApplicationContext());
 		apostaDAO = new ApostaDAO();
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		LocalBroadcastManager.getInstance(getApplicationContext())
-				.registerReceiver(localReceiver, localReceiver.getFilters());
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		LocalBroadcastManager.getInstance(getApplicationContext())
-				.unregisterReceiver(localReceiver);
+		
+		AlarmHelper.configNextAlarm(getApplicationContext());
 	}
 
 	private void bindViewComponents() {
@@ -242,8 +225,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			break;
 
 		case R.id.btVerificar:
-			startService(new Intent(getApplicationContext(),
-					ResultService.class));
+			sendBroadcast(new Intent(AlarmReceiver.ALARM_ACTION));
 			break;
 
 		default:
@@ -251,12 +233,4 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
 }
