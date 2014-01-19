@@ -87,4 +87,17 @@ public class Aposta implements Serializable {
 		return contentValues;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("C: ");
+		stringBuilder.append(getConcurso());
+		stringBuilder.append(" A: ");
+		stringBuilder.append(getAcertos());
+		stringBuilder.append(" D: ");
+		stringBuilder.append(getDezenas());
+		
+		return stringBuilder.toString();
+	}
+	
 }

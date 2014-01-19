@@ -19,7 +19,7 @@
     <string name="falha_servico">Falha na Serviço</string>
     
     <string name="notification_title">GanheiNaMega tem uma mensagem para você</string>
-    <string name="notification_text">Você acaba de acertar alguns números da Mega Sena, clique aqui e saiba mais</string>
+    <string name="notification_text">Confira o ultimo resultado da mega sena</string>
     <string name="title_activity_result">Resultado</string>
     <string name="verify">Disparar Alarme</string>
 

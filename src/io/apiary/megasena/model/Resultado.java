@@ -72,4 +72,26 @@ public class Resultado implements Serializable {
 		this.dezena6 = dezena6;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("C: ");
+		stringBuilder.append(getConcurso());
+		stringBuilder.append(" D: [");
+		stringBuilder.append(getDezena1());
+		stringBuilder.append(", ");
+		stringBuilder.append(getDezena2());
+		stringBuilder.append(", ");
+		stringBuilder.append(getDezena3());
+		stringBuilder.append(", ");
+		stringBuilder.append(getDezena4());
+		stringBuilder.append(", ");
+		stringBuilder.append(getDezena5());
+		stringBuilder.append(", ");
+		stringBuilder.append(getDezena6());
+		stringBuilder.append("]");
+		
+		return stringBuilder.toString();
+	}
+	
 }
