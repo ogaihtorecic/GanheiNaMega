@@ -22,5 +22,6 @@
     <string name="notification_text">Confira o ultimo resultado da mega sena</string>
     <string name="title_activity_result">Resultado</string>
     <string name="verify">Disparar Alarme</string>
+    <string name="progress_msg">Processando</string>
 
 </resources>

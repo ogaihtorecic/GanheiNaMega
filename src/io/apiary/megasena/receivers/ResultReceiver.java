@@ -1,5 +1,6 @@
 package io.apiary.megasena.receivers;
 
+import io.apiary.megasena.MainActivity;
 import io.apiary.megasena.R;
 import io.apiary.megasena.ResultActivity;
 import io.apiary.megasena.helpers.ApostaHelper;
@@ -56,7 +57,7 @@ public class ResultReceiver extends BroadcastReceiver {
 	private void issueNotificationOnError(Context context,
 			String notificationText) {
 
-		Intent resultIntent = new Intent(context, ResultActivity.class);
+		Intent resultIntent = new Intent(context, MainActivity.class);
 
 		notify(context, resultIntent, notificationText);
 

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -64,6 +65,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Button btGravarAposta, btCancelarAposta, btBuscarApostas,
 			btVerificar;
 
+	private ProgressDialog progressDialog;
+	
 	private GenericDAO<Aposta> apostaDAO;
 
 	@Override
@@ -78,6 +81,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		apostaDAO = new ApostaDAO();
 		
 		AlarmHelper.configNextAlarm(getApplicationContext());
+		
+		setupProgressDialog();
+	}
+
+	private void setupProgressDialog() {
+		this.progressDialog = new ProgressDialog(this);
+		this.progressDialog.setCancelable(false);
+		this.progressDialog.setMessage(getResources().getString(R.string.progress_msg));
 	}
 
 	private void bindViewComponents() {
@@ -191,6 +202,10 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		new AsyncTask<Void, Void, List<Aposta>>() {
 
+			protected void onPreExecute() {
+				MainActivity.this.progressDialog.show();
+			};
+			
 			@Override
 			protected List<Aposta> doInBackground(Void... params) {
 				return apostaDAO.list();
@@ -199,6 +214,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			@Override
 			protected void onPostExecute(List<Aposta> result) {
 				super.onPostExecute(result);
+				MainActivity.this.progressDialog.dismiss();
 				Intent intent = new Intent(MainActivity.this, HistoricoApostasActivity.class);
 				intent.putExtra(Aposta.INTENT_KEY, (ArrayList<Aposta>)result);
 				startActivity(intent);
