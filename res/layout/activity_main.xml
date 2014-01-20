@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/toggle_color"
-                android:textOff="1"
+                android:textOff="01"
                 android:textOn="X" />
 
             <ToggleButton
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/toggle_color"
-                android:textOff="2"
+                android:textOff="02"
                 android:textOn="X" />
 
             <ToggleButton
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/toggle_color"
-                android:textOff="3"
+                android:textOff="03"
                 android:textOn="X" />
 
             <ToggleButton
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/toggle_color"
-                android:textOff="4"
+                android:textOff="04"
                 android:textOn="X" />
 
             <ToggleButton
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/toggle_color"
-                android:textOff="5"
+                android:textOff="05"
                 android:textOn="X" />
 
             <ToggleButton
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/toggle_color"
-                android:textOff="6"
+                android:textOff="06"
                 android:textOn="X" />
 
             <ToggleButton
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/toggle_color"
-                android:textOff="7"
+                android:textOff="07"
                 android:textOn="X" />
 
             <ToggleButton
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/toggle_color"
-                android:textOff="8"
+                android:textOff="08"
                 android:textOn="X" />
 
             <ToggleButton
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/toggle_color"
-                android:textOff="9"
+                android:textOff="09"
                 android:textOn="X" />
 
             <ToggleButton

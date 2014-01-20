@@ -56,42 +56,51 @@ public class AcertosAdapter extends BaseAdapter {
 
 		} else {
 
-			convertView = layoutInflater.inflate(R.layout.activity_result_item,
-					null);
+			convertView = layoutInflater.inflate(R.layout.activity_result_item, null);
 
 			viewHolder = new ViewHolder();
 
-			viewHolder.tvAcertos = (TextView) convertView
-					.findViewById(R.id.tv_acertos);
-
-			for (int i = 0; i < viewHolder.ids.length; i++) {
-				viewHolder.tvArray[i] = (TextView) convertView
-						.findViewById(viewHolder.ids[i]);
-				viewHolder.tvArray[i].setText("");
-			}
-
+			viewHolder.tvAcertos = (TextView) convertView.findViewById(R.id.tv_acertos);
 			viewHolder.tvAcertos.setText(aposta.getAcertos().toString());
-			Set<Integer> setDezenas = aposta.getDezenas();
-			int i = 0;
-			for (Integer dezena : setDezenas) {
-				viewHolder.tvArray[i].setText(GenericHelper.fillWithZeros(
-						dezena.toString(), "0", 2));
-				if (isAcerto(dezena, resultado)) {
-					viewHolder.tvArray[i].setTypeface(null, Typeface.BOLD);
-				}
-				i++;
-			}
 
-			for (int j = 0; j < viewHolder.tvArray.length; j++) {
-				if ("".equals(viewHolder.tvArray[j].getText())) {
-					viewHolder.tvArray[j].setVisibility(View.INVISIBLE);
-				}
-			}
+			inicializarTextoDezenas(convertView, viewHolder);
+
+			destacarDezenasSorteadas(aposta, viewHolder);
+
+			camuflarDezenasDesnecessarias(viewHolder);
 
 			convertView.setTag(viewHolder);
 		}
 
 		return convertView;
+	}
+	
+	private void inicializarTextoDezenas(View convertView, ViewHolder viewHolder) {
+		for (int i = 0; i < viewHolder.ids.length; i++) {
+			viewHolder.tvArray[i] = (TextView) convertView.findViewById(viewHolder.ids[i]);
+			viewHolder.tvArray[i].setText("");
+		}
+	}
+
+	private void destacarDezenasSorteadas(Aposta aposta, ViewHolder viewHolder) {
+		Set<Integer> setDezenas = aposta.getDezenas();
+		int i = 0;
+		for (Integer dezena : setDezenas) {
+			viewHolder.tvArray[i].setText(GenericHelper.fillWithZeros(
+					dezena.toString(), "0", 2));
+			if (isAcerto(dezena, resultado)) {
+				viewHolder.tvArray[i].setTypeface(null, Typeface.BOLD);
+			}
+			i++;
+		}
+	}
+	
+	private void camuflarDezenasDesnecessarias(ViewHolder viewHolder) {
+		for (int j = 0; j < viewHolder.tvArray.length; j++) {
+			if ("".equals(viewHolder.tvArray[j].getText())) {
+				viewHolder.tvArray[j].setVisibility(View.INVISIBLE);
+			}
+		}
 	}
 
 	private boolean isAcerto(Integer dezena, Resultado r) {

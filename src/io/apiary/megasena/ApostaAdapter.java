@@ -51,42 +51,48 @@ public class ApostaAdapter extends BaseAdapter {
 
 		} else {
 
-			convertView = layoutInflater.inflate(
-					R.layout.activity_historico_aposta_item, null);
+			convertView = layoutInflater.inflate(R.layout.activity_historico_aposta_item, null);
 
 			viewHolder = new ViewHolder();
 
-			viewHolder.tvNumConcurso = (TextView) convertView
-					.findViewById(R.id.tv_num_concurso);
+			viewHolder.tvNumConcurso = (TextView) convertView.findViewById(R.id.tv_num_concurso);
+			viewHolder.tvNumConcurso.setText(GenericHelper.fillWithZeros(aposta.getConcurso().toString(), "000", 4));
 
-			// cria textViews e os inicializa com texto vazio
-			for (int i = 0; i < viewHolder.ids.length; i++) {
-				viewHolder.tvArray[i] = (TextView) convertView
-						.findViewById(viewHolder.ids[i]);
-				viewHolder.tvArray[i].setText("");
-			}
+			inicializarTextoDezenas(convertView, viewHolder);
 
-			viewHolder.tvNumConcurso.setText(GenericHelper.fillWithZeros(aposta
-					.getConcurso().toString(), "000", 4));
-			// preenche de 6 a 15 textViews para serem apresentados na tela
-			Set<Integer> setDezenas = aposta.getDezenas();
-			int i = 0;
-			for (Integer dezena : setDezenas) {
-				viewHolder.tvArray[i++].setText(GenericHelper.fillWithZeros(
-						dezena.toString(), "0", 2));
-			}
+			atribuirDezenasMarcadas(aposta, viewHolder);
 
-			// transforma para invisivel os textViews nao preenchidos
-			for (int j = 0; j < viewHolder.tvArray.length; j++) {
-				if ("".equals(viewHolder.tvArray[j].getText())) {
-					viewHolder.tvArray[j].setVisibility(View.INVISIBLE);
-				}
-			}
+			camuflarDezenasDesnecessarias(viewHolder);
 
 			convertView.setTag(viewHolder);
 		}
 
 		return convertView;
+	}
+	
+	private void inicializarTextoDezenas(View convertView, ViewHolder viewHolder) {
+		for (int i = 0; i < viewHolder.ids.length; i++) {
+			viewHolder.tvArray[i] = (TextView) convertView
+					.findViewById(viewHolder.ids[i]);
+			viewHolder.tvArray[i].setText("");
+		}
+	}
+	
+	private void atribuirDezenasMarcadas(Aposta aposta, ViewHolder viewHolder) {
+		Set<Integer> setDezenas = aposta.getDezenas();
+		int i = 0;
+		for (Integer dezena : setDezenas) {
+			viewHolder.tvArray[i++].setText(GenericHelper.fillWithZeros(
+					dezena.toString(), "0", 2));
+		}
+	}
+
+	private void camuflarDezenasDesnecessarias(ViewHolder viewHolder) {
+		for (int j = 0; j < viewHolder.tvArray.length; j++) {
+			if ("".equals(viewHolder.tvArray[j].getText())) {
+				viewHolder.tvArray[j].setVisibility(View.INVISIBLE);
+			}
+		}
 	}
 
 	static class ViewHolder {
