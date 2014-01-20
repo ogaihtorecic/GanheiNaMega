@@ -10,7 +10,7 @@
     <string name="aposta_registrada">Aposta registrada para o concurso</string>
     <string name="aposta_invalida_num_concurso">Informe o nº do concurso</string>
     <string name="aposta_invalida_qtd_dezenas">Selecione de 6 a 15 dezenas</string>
-    <string name="title_activity_historico_apostas">HistoricoApostasActivity</string>
+    <string name="title_activity_historico_apostas">Histórico de Apostas</string>
     <string name="concurso">Concurso</string>
     <string name="dezenas">Dezenas</string>
     <string name="aposta_invalida">Aposta invalida</string>
