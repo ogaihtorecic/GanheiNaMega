@@ -2,35 +2,41 @@ package io.apiary.megasena;
 
 import io.apiary.megasena.helpers.GenericHelper;
 import io.apiary.megasena.model.Aposta;
+import io.apiary.megasena.model.Resultado;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class ApostaAdapter extends BaseAdapter {
+public class AcertosAdapter extends BaseAdapter {
 
-	private List<Aposta> listAposta;
+	private List<Aposta> apostas;
+	private Resultado resultado;
 	private Context context;
 
-	public ApostaAdapter(List<Aposta> listAposta, Context context) {
-		this.listAposta = listAposta;
+	public AcertosAdapter(List<Aposta> apostas, Resultado resultado,
+			Context context) {
+		this.apostas = apostas;
+		this.resultado = resultado;
 		this.context = context;
 	}
 
 	@Override
 	public int getCount() {
-		return this.listAposta.size();
+		return apostas.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return this.listAposta.get(position);
+		return apostas.get(position);
 	}
 
 	@Override
@@ -40,8 +46,7 @@ public class ApostaAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-
-		Aposta aposta = this.listAposta.get(position);
+		Aposta aposta = this.apostas.get(position);
 		ViewHolder viewHolder;
 		LayoutInflater layoutInflater = (LayoutInflater) this.context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -51,32 +56,32 @@ public class ApostaAdapter extends BaseAdapter {
 
 		} else {
 
-			convertView = layoutInflater.inflate(
-					R.layout.activity_historico_aposta_item, null);
+			convertView = layoutInflater.inflate(R.layout.activity_result_item,
+					null);
 
 			viewHolder = new ViewHolder();
 
-			viewHolder.tvNumConcurso = (TextView) convertView
-					.findViewById(R.id.tv_num_concurso);
+			viewHolder.tvAcertos = (TextView) convertView
+					.findViewById(R.id.tv_acertos);
 
-			// cria textViews e os inicializa com texto vazio
 			for (int i = 0; i < viewHolder.ids.length; i++) {
 				viewHolder.tvArray[i] = (TextView) convertView
 						.findViewById(viewHolder.ids[i]);
 				viewHolder.tvArray[i].setText("");
 			}
 
-			viewHolder.tvNumConcurso.setText(GenericHelper.fillWithZeros(aposta
-					.getConcurso().toString(), "000", 4));
-			// preenche de 6 a 15 textViews para serem apresentados na tela
+			viewHolder.tvAcertos.setText(aposta.getAcertos().toString());
 			Set<Integer> setDezenas = aposta.getDezenas();
 			int i = 0;
 			for (Integer dezena : setDezenas) {
-				viewHolder.tvArray[i++].setText(GenericHelper.fillWithZeros(
+				viewHolder.tvArray[i].setText(GenericHelper.fillWithZeros(
 						dezena.toString(), "0", 2));
+				if (isAcerto(dezena, resultado)) {
+					viewHolder.tvArray[i].setTypeface(null, Typeface.BOLD);
+				}
+				i++;
 			}
 
-			// transforma para invisivel os textViews nao preenchidos
 			for (int j = 0; j < viewHolder.tvArray.length; j++) {
 				if ("".equals(viewHolder.tvArray[j].getText())) {
 					viewHolder.tvArray[j].setVisibility(View.INVISIBLE);
@@ -89,9 +94,16 @@ public class ApostaAdapter extends BaseAdapter {
 		return convertView;
 	}
 
+	private boolean isAcerto(Integer dezena, Resultado r) {
+		return Arrays.binarySearch(
+				new Integer[] { r.getDezena1(), r.getDezena2(), r.getDezena3(),
+						r.getDezena4(), r.getDezena5(), r.getDezena6() },
+				dezena) > -1;
+	}
+
 	static class ViewHolder {
 
-		private TextView tvNumConcurso, tvDez1, tvDez2, tvDez3, tvDez4, tvDez5,
+		private TextView tvAcertos, tvDez1, tvDez2, tvDez3, tvDez4, tvDez5,
 				tvDez6, tvDez7, tvDez8, tvDez9, tvDez10, tvDez11, tvDez12,
 				tvDez13, tvDez14, tvDez15;
 

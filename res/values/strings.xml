@@ -24,4 +24,6 @@
     <string name="verify">Disparar Alarme</string>
     <string name="progress_msg">Processando</string>
 
+    <string name="acertos">Acertos</string>
+    <string name="apostas">Apostas</string>
 </resources>
