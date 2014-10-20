@@ -1,4 +1,4 @@
 GanheiNaMega
 ============
 
-Aplicativo Android que verifica se você ganhou na mega sena
+Aplicativo Android que verifica automaticamente se você ganhou na mega sena
